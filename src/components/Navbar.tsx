@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { useTheme } from "../context/ThemeContextType";
 import { useNavigate } from "react-router-dom";
+import { url } from "inspector";
 
 const Navbar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -42,14 +43,19 @@ const Navbar: React.FC = () => {
 
       {/* Desktop Navigation */}
       <ul className="hidden md:flex gap-x-[20px] text-[18px] text-black dark:text-white   font-[400]">
-        {["users", "favorites"].map((item) => (
-          <li key={item}>
+        {[
+          { name: "users", url: "/" },
+          { name: "favorites", url: "/favorites" },
+        ].map((item) => (
+          <li key={item.name}>
             <p
-              onClick={() => navigate(item === "users" ? "/" : `/${item}`)}
-              className="cursor-pointer rounded-xl px-[10px] py-[8px] hover:shadow hover:shadow-black  hover:bg-[#b71824] hover:text-white
-             tw-[box-shadow:inset_0_4px_10px_rgba(0,0,0,0.3)]"
+              onClick={() => navigate(item.url)}
+              className={` cursor-pointer rounded-xl px-[10px] py-[8px] hover:shadow hover:shadow-black  hover:bg-[#b71824] hover:text-white
+             tw-[box-shadow:inset_0_4px_10px_rgba(0,0,0,0.3)] ${
+               window.location.pathname === item.url && "active"
+             }`}
             >
-              {item.charAt(0).toUpperCase() + item.slice(1)}
+              {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
             </p>
           </li>
         ))}
@@ -92,16 +98,19 @@ const Navbar: React.FC = () => {
           </div>
           <div className="flex flex-col items-start gap-6 mt-6">
             <ul className=" gap-x-[20px] text-[18px] text-black dark:text-white   font-[400]">
-              {["users", "favorites"].map((item) => (
-                <li key={item}>
+              {[
+                { name: "users", url: "/" },
+                { name: "favorites", url: "/favorites" },
+              ].map((item) => (
+                <li key={item.name}>
                   <p
-                    onClick={() =>
-                      navigate(item === "users" ? "/" : `/${item}`)
-                    }
-                    className="cursor-pointer rounded-xl px-[10px] py-[8px] hover:bg-[#b71824] hover:text-white
-             tw-[box-shadow:inset_0_4px_10px_rgba(0,0,0,0.3)]"
+                    onClick={() => navigate(item.url)}
+                    className={`cursor-pointer rounded-xl px-[10px] py-[8px] hover:bg-[#b71824] hover:text-white
+             tw-[box-shadow:inset_0_4px_10px_rgba(0,0,0,0.3)] ${
+               window.location.pathname === item.url && "active"
+             }`}
                   >
-                    {item.charAt(0).toUpperCase() + item.slice(1)}
+                    {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
                   </p>
                 </li>
               ))}

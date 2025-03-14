@@ -182,3 +182,6 @@ button:focus-visible {
 @utility button {
   @apply shadow-inner hover:scale-[120%] hover:!bg-[#b71825e7] transition-all duration-1000 shadow-black  !bg-[#b71824] !border-none text-white  !outline-none !ring-0 focus-visible:ring-0 focus-visible:border-none active:ring-0 active:border-none;
 }
+@utility active {
+  @apply shadow shadow-black  bg-[#b71824] text-white;
+}
