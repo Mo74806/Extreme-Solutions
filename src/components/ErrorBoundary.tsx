@@ -1,4 +1,3 @@
-import { error } from "console";
 import { Component, ErrorInfo, ReactNode } from "react";
 import { Button } from "./ui/button";
 import Navbar from "./Navbar";

@@ -1,5 +1,3 @@
-// import { cn } from "@/lib/utils"
-
 import { cn } from "../../lib/utils";
 
 function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
