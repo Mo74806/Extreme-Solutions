@@ -19,7 +19,8 @@ const UserCard = ({ user }: { user: any }) => {
         hideProgressBar: true,
         type: "success",
 
-        className: "!bg-white !text-black font-semibold ",
+        className:
+          "!bg-white dark:!bg-black dark:!text-white !text-black font-semibold ",
       });
     } else {
       dispatch(addFavorite(user));
@@ -29,7 +30,8 @@ const UserCard = ({ user }: { user: any }) => {
         hideProgressBar: true,
         type: "success",
 
-        className: "!bg-white !text-black font-semibold ",
+        className:
+          "!bg-white dark:!bg-black dark:!text-white !text-black font-semibold ",
       });
     }
   };
