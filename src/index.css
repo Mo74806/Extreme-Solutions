@@ -55,10 +55,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: lato;
-  background: #ece9e6;
-  background: -webkit-linear-gradient(to right, #ffffff, #ece9e6);
-  background: linear-gradient(to right, #ffffff, #ece9e6);
 }
+body {
+  transition: background 0.3s ease-in-out;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -171,8 +172,13 @@ button:focus-visible {
   cursor: pointer;
   box-shadow: -8px 8px 24px -4px rgba(145, 158, 171, 0.5);
 }
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
+@utility light-mode {
+  @apply bg-[#ece9e6];
+}
+
+@utility dark-mode {
+  @apply bg-[#1d1d1e];
+}
+@utility button {
+  @apply shadow-inner hover:scale-[120%] hover:!bg-[#b71825e7] transition-all duration-1000 shadow-black  !bg-[#b71824] !border-none text-white  !outline-none !ring-0 focus-visible:ring-0 focus-visible:border-none active:ring-0 active:border-none;
 }

@@ -1,54 +1,96 @@
-# React + TypeScript + Vite
+# 📌 Extreme Solutions
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application with theme persistence, error handling, user fetching, and Redux-based state management.
 
-Currently, two official plugins are available:
+# 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+✅ **GitHub Users Fetching**: Retrieves **paginated** user data from the **GitHub API**.  
+ ✅**Theme Management**: Supports **dark** and **light** modes with **local storage** persistence.  
+✅ **Error Boundary**: Catches errors in the React component tree and displays a fallback UI.  
+✅ **Redux Persist**: Stores **favorite users** persistently using **Redux Toolkit** and **redux-persist**.
 
-## Expanding the ESLint configuration
+## 📦 Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**📥 Clone the Repository**
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+git clone git@github.com:Mo74806/Extreme-Solutions.git
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+cd project-name
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+**📥 Install dependencies:**
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+npm install
+
+**📥 Start the development server:**
+
+npm run dev
+
+## ⚠️Known Issue: GitHub API Pagination Bug
+
+**🚨 GitHub API pagination does not work as expected.**
+Although the API correctly returns the number of users per page as defined, changing pages always returns the first set of users instead of fetching new ones.
+This issue seems to be related to GitHub’s caching mechanism or a missing parameter in the API request.
+
+## 📂 Project Structure
+
+![App Screenshot](https://files.oaiusercontent.com/file-RGmRHW4QEDbJuvNXwanC6D?se=2025-03-14T13%3A45%3A06Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D299%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3DScreenshot%25202025-03-14%2520153559.png&sig=khI%2BxS5OqjlPwWvflRIsWGmX6OFRX2J3QRIFuLuGowU%3D)
+
+## Usage
+
+**1. Theme Management**
+
+**Provider**: The <ThemeProvider> wraps the app and manages the theme state.
+
+**Hook**: useTheme() returns the current theme and a toggleTheme() function.
+
+import { useTheme } from "../context/ThemeContext";
+
+const ThemeSwitcher = () => {
+const { theme, toggleTheme } = useTheme();
+return <button onClick={toggleTheme}>Switch to {theme === "dark" ? "light" : "dark"} mode</button>;
+};
+
+**2. Error Handling**
+
+Wrap your app with <ErrorBoundary>:
+
+<ErrorBoundary>
+  <App />
+</ErrorBoundary>
+
+**3. Fetching GitHub Users**
+
+import { getUsers } from "../services/users.services.ts";
+
+useEffect(() => {
+getUsers(1, "john").then(data => console.log(data));
+}, []);
+
+**4. Managing Favorites (Redux Toolkit + Persist)**
+
+import { useDispatch, useSelector } from "react-redux";
+import { addFavorite, removeFavorite } from "../redux/favoriteSlice";
+
+const dispatch = useDispatch();
+const favorites = useSelector((state) => state.favorites.favorites);
+
+dispatch(addFavorite({ id: 1, login: "JohnDoe",......... }));
+dispatch(removeFavorite(1));
+
+**Dependencies**
+
+React: Frontend framework
+
+Redux Toolkit: State management
+
+redux-persist: Persist Redux state
+
+Axios: API requests
+
+Tailwind CSS: Styling
+
+TypeScript: Type safety
+
+License
+
+MIT License

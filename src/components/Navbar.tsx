@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { Menu, Moon, Sun } from "lucide-react";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "./ui/sheet";
-import { useTheme } from "../lib/ThemeContextType";
+import { useTheme } from "../context/ThemeContextType";
+import { useNavigate } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -10,7 +11,7 @@ const Navbar: React.FC = () => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-
+  const navigate = useNavigate();
   // Ensure the theme is correctly set after mount
   useEffect(() => {
     setMounted(true);
@@ -41,10 +42,11 @@ const Navbar: React.FC = () => {
 
       {/* Desktop Navigation */}
       <ul className="hidden md:flex gap-x-[20px] text-[18px] text-black dark:text-white   font-[400]">
-        {["users", "favorits"].map((item) => (
+        {["users", "favorites"].map((item) => (
           <li key={item}>
             <p
-              className="cursor-pointer rounded-xl px-[10px] py-[8px] hover:bg-[#b71824] hover:text-white
+              onClick={() => navigate(item === "users" ? "/" : `/${item}`)}
+              className="cursor-pointer rounded-xl px-[10px] py-[8px] hover:shadow hover:shadow-black  hover:bg-[#b71824] hover:text-white
              tw-[box-shadow:inset_0_4px_10px_rgba(0,0,0,0.3)]"
             >
               {item.charAt(0).toUpperCase() + item.slice(1)}
@@ -59,7 +61,7 @@ const Navbar: React.FC = () => {
           variant="default"
           color="red"
           onClick={() => toggleTheme()}
-          className="cursor-pointer !bg-[#b71824] text-white dark:text-gray-700"
+          className="button"
         >
           {mounted && theme === "dark" ? (
             <Sun color="white" size={20} />
@@ -90,9 +92,12 @@ const Navbar: React.FC = () => {
           </div>
           <div className="flex flex-col items-start gap-6 mt-6">
             <ul className=" gap-x-[20px] text-[18px] text-black dark:text-white   font-[400]">
-              {["users", "favorits"].map((item) => (
+              {["users", "favorites"].map((item) => (
                 <li key={item}>
                   <p
+                    onClick={() =>
+                      navigate(item === "users" ? "/" : `/${item}`)
+                    }
                     className="cursor-pointer rounded-xl px-[10px] py-[8px] hover:bg-[#b71824] hover:text-white
              tw-[box-shadow:inset_0_4px_10px_rgba(0,0,0,0.3)]"
                   >
@@ -122,4 +127,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

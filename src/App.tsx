@@ -1,14 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Favorites from "./pages/Favorites";
+import { Suspense, lazy } from "react";
+import LoadingPage from "./components/LoadingPage";
+
+const LazyHome = lazy(() => import("./pages/Home"));
+const LazyFavorites = lazy(() => import("./pages/Favorites"));
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/favorites" element={<Favorites />} />
-      </Routes>
+      <Suspense fallback={<LoadingPage />}>
+        <Routes>
+          <Route path="/" element={<LazyHome />} />
+          <Route path="/favorites" element={<LazyFavorites />} />
+        </Routes>
+      </Suspense>
     </Router>
   );
 }
