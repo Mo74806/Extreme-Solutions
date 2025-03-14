@@ -16,7 +16,7 @@ const EmptyState = ({
   return (
     <div className="text-black mt-[20px] lg:mt-[200px] dark:text-white flex flex-col justify-center items-center mx-auto ">
       <img src="/assets/EmptySearch.svg" />
-      <h1 className=" text-[24px] md:text-[32px] lg:text-[48px] font-extrabold ">
+      <h1 className=" text-[24px] text-center md:text-[32px] lg:text-[48px] font-extrabold ">
         {title}
       </h1>
       {subTitle && (
