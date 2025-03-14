@@ -4,7 +4,6 @@ import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { useTheme } from "../context/ThemeContextType";
 import { useNavigate } from "react-router-dom";
-import { url } from "inspector";
 
 const Navbar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
