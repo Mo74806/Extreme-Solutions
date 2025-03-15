@@ -7,7 +7,7 @@ export async function getUsers(page: number, search?: string): Promise<any> {
       maxBodyLength: Infinity,
       url: `https://api.github.com${
         search ? "/search/" : "/"
-      }users?per_page=5&page=${page}${search ? `&q=${search}` : ""}`,
+      }users?per_page=10&page=${page}${search ? `&q=${search}` : ""}`,
     };
 
     let response: any = await axios(config);

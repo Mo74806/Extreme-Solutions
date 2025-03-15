@@ -17,9 +17,8 @@ interface SearchBarProps extends React.InputHTMLAttributes<HTMLInputElement> {
 const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
   ({ handleSearch, setLoading, placeholder }, ref) => {
     const [query, setQuery] = useState<string>("");
-    const [debouncedValue] = useDebounce(query, 1000);
+    const [debouncedValue] = useDebounce(query, 1000); //debounce value to avoid too many requests
     useImperativeHandle(ref, () => searchInputRef.current!);
-
     const searchInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -58,7 +57,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
     return (
       <div className="relative  dark:bg-black/30 dark:backdrop-blur-xl dark:shadow-lg dark:border dark:border-white/20 bg-white card-shadow backdrop-blur-lg border border-transparent rounded-2xl p-4 w-[90%] lg:w-[50%] text-black text-center transition-all">
         {/* Search Input */}
-        <div className="flex  items-center gap-2 border border-gray-300 rounded-lg px-4 py-2 focus-within:border-[#b71824] transition-all">
+        <div className="flex  items-center gap-2 border border-gray-300 rounded-lg px-4 py-2  focus-within:border-[#b71824] transition-all">
           <Search className="text-gray-500 transition-all" />
           <input
             ref={searchInputRef}

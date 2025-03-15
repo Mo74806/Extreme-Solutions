@@ -7,9 +7,11 @@ import { Skeleton } from "../components/ui/skeleton";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import EmptyState from "../components/EmptyState";
+import { useNavigate } from "react-router-dom";
 
 const Favorites = () => {
   //--------------------DECLERATIONS------------------------
+  const navigate = useNavigate();
 
   const { favorites } = useSelector(
     (state: RootState) => state.favorites ?? []
@@ -92,7 +94,7 @@ const Favorites = () => {
                   <UserCard key={`${user.id}+${index}`} user={user} />
                 ))}
           </div>
-          {searchResult.length === 0 && (
+          {!loading && searchResult.length === 0 && (
             <EmptyState
               title={
                 searchText
@@ -106,7 +108,7 @@ const Favorites = () => {
               }
               button={true}
               buttonText="Go Home"
-              buttonHandler={() => {}}
+              buttonHandler={() => navigate("/")}
             />
           )}
         </div>

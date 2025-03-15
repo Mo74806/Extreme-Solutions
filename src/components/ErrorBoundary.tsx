@@ -38,11 +38,14 @@ class ErrorBoundary extends Component<Props, State> {
               Sorry !! Something went wrong
             </h1>
             <span className="text-[16px] md:text-[20px] lg:text-[24px] ">
-              {this.state.errorMessage}
+              {this.state.errorMessage ||
+                "there something went wrong ,try again later"}
             </span>
 
             <Button
-              onClick={() => {}}
+              onClick={() => {
+                window.location.href = "/";
+              }}
               variant="default"
               color="#b71824"
               className="button mt-3"

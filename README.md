@@ -25,15 +25,17 @@ npm install
 
 npm run dev
 
-## ⚠️Known Issue: GitHub API Pagination Bug
+## ⚠️ Issue: GitHub API Pagination Bug & Search
 
 **🚨 GitHub API pagination does not work as expected.**
 Although the API correctly returns the number of users per page as defined, changing pages always returns the first set of users instead of fetching new ones.
 This issue seems to be related to GitHub’s caching mechanism or a missing parameter in the API request.
+**🚨 GitHub API search isn't the same as the provided one.**
+it use anothe api and it has a low rate limit so it block the IP for a little bit sometimes
 
 ## 📂 Project Structure
 
-![App Screenshot](https://files.oaiusercontent.com/file-RGmRHW4QEDbJuvNXwanC6D?se=2025-03-14T13%3A45%3A06Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D299%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3DScreenshot%25202025-03-14%2520153559.png&sig=khI%2BxS5OqjlPwWvflRIsWGmX6OFRX2J3QRIFuLuGowU%3D)
+![App Screenshot](https://cloud.appwrite.io/v1/storage/buckets/679abad300010468c034/files/67d4963600357775ea65/view?project=66981a12002644c13be7&mode=admin)
 
 ## Usage
 

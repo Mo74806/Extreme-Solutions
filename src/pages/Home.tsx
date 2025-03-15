@@ -21,7 +21,6 @@ const Home = () => {
   const [firstLoad, setFirstLoad] = useState(true); //detect first render of the page to not make the request many times
   //------------------------FUNCTIONS---------------------------------------
   const getUsersList = async () => {
-    // if (loading) return;
     setLoading(true);
     try {
       const response = await getUsers(
@@ -32,7 +31,7 @@ const Home = () => {
       );
 
       if (response.response) {
-        toast(response.response.data.message, {
+        toast(response.response.data.message || "Something went wrong", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: true,
@@ -154,7 +153,7 @@ const Home = () => {
             }
             button={true}
             buttonText="Try Again"
-            buttonHandler={() => {}}
+            buttonHandler={() => window.location.reload()}
           />
         )}
 

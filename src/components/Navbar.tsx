@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
           <li key={item.name}>
             <p
               onClick={() => navigate(item.url)}
-              className={` cursor-pointer rounded-xl px-[10px] py-[8px] hover:shadow hover:shadow-black  hover:bg-[#b71824] hover:text-white
+              className={` cursor-pointer rounded-xl px-[10px] py-[8px] hover:shadow hover:shadow-black  transition-all duration-300 hover:bg-[#b71818a1] hover:text-white
              tw-[box-shadow:inset_0_4px_10px_rgba(0,0,0,0.3)] ${
                window.location.pathname === item.url && "active"
              }`}
