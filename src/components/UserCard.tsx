@@ -5,7 +5,6 @@ import { addFavorite, removeFavorite } from "../store/favoriteSlice";
 import { toast } from "react-toastify";
 
 const UserCard = ({ user }: { user: any }) => {
-  console.log(user);
   const dispatch = useDispatch();
   const { favorites } = useSelector((state: any) => state.favorites ?? []);
   const [isFavorite, setIsFavorite] = useState(false);
